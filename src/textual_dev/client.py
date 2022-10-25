@@ -12,7 +12,7 @@ from typing import Any, NamedTuple, Type
 from rich.console import Console
 from rich.segment import Segment
 
-from .._log import LogGroup, LogVerbosity
+from textual._log import LogGroup, LogVerbosity
 
 
 import aiohttp

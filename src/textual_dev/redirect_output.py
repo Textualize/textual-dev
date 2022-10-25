@@ -4,7 +4,7 @@ import inspect
 
 from typing import TYPE_CHECKING, cast
 from .client import DevtoolsLog
-from .._log import LogGroup, LogVerbosity
+from textual._log import LogGroup, LogVerbosity
 
 if TYPE_CHECKING:
     from .client import DevtoolsClient

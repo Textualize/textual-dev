@@ -28,7 +28,9 @@ dependencies = [
   "textual",
   "click",
   "msgpack",
-  "importlib-metadata>=4.11.3"
+  "rich",
+  "importlib-metadata>=4.11.3",
+  "msgpack>=1.0.3"
 ]
 dynamic = ["version"]
 
