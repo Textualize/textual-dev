@@ -23,7 +23,13 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "aiohttp",
+  "textual",
+  "click",
+  "msgpack",
+  "importlib-metadata>=4.11.3"
+]
 dynamic = ["version"]
 
 [project.urls]
