@@ -36,7 +36,7 @@ def console(port: int | None, verbose: bool, exclude: list[str]) -> None:
     """Launch the textual console."""
 
     from rich.console import Console
-    from textual.devtools.server import _run_devtools
+    from textual_dev.server import _run_devtools
 
     console = Console()
     console.clear()
@@ -199,7 +199,7 @@ def _run_app(
 @run.command("borders")
 def borders():
     """Explore the border styles available in Textual."""
-    from textual.cli.previews import borders
+    from textual_dev.previews import borders
 
     borders.app.run()
 
@@ -207,7 +207,7 @@ def borders():
 @run.command("easing")
 def easing():
     """Explore the animation easing functions available in Textual."""
-    from textual.cli.previews import easing
+    from textual_dev.previews import easing
 
     easing.app.run()
 
@@ -215,7 +215,7 @@ def easing():
 @run.command("colors")
 def colors():
     """Explore the design system."""
-    from textual.cli.previews import colors
+    from textual_dev.previews import colors
 
     colors.app.run()
 
@@ -223,7 +223,7 @@ def colors():
 @run.command("keys")
 def keys():
     """Show key events."""
-    from textual.cli.previews import keys
+    from textual_dev.previews import keys
 
     keys.app.run()
 
@@ -231,6 +231,6 @@ def keys():
 @run.command("diagnose")
 def run_diagnose():
     """Print information about the Textual environment."""
-    from textual.cli.tools.diagnose import diagnose
+    from textual_dev.tools.diagnose import diagnose
 
     diagnose()
