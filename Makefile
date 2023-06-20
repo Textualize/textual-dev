@@ -61,13 +61,13 @@ checkall: lint stricttypecheck	# Check all the things
 textual:			# Show the help for the textual command.
 	$(textual)
 
-.PHONY: console
-console:			# Run the textual console
-	$(textual) console
-
 .PHONY: borders
 borders:			# Show the Textual borders preview.
 	$(textual) borders
+
+.PHONY: console
+console:			# Run the textual console
+	$(textual) console
 
 ##############################################################################
 # Utility.
