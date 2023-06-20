@@ -69,6 +69,10 @@ borders:			# Show the Textual borders preview.
 console:			# Run the textual console
 	$(textual) console
 
+.PHONY: diagnose
+diagnose:			# Run the Textual diagnosis tool.
+	$(textual) diagnose
+
 ##############################################################################
 # Utility.
 .PHONY: repl
