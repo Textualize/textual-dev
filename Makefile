@@ -1,7 +1,8 @@
-##############################################################################
+#############################################################################
 # Common make values.
 package := textual_dev
 run     := poetry run
+python  := $(run) python
 lint    := $(run) pylint
 mypy    := $(run) mypy
 black   := $(run) black
