@@ -4,8 +4,9 @@ import platform
 import shlex
 import sys
 
-from ..constants import DEVTOOLS_PORT
-from ._run import exec_command, run_app
+from textual.constants import DEVTOOLS_PORT
+
+from .tools.run import exec_command, run_app
 
 try:
     import click
