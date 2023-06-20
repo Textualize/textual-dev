@@ -1,4 +1,4 @@
 from .cli import run
 
-if __name__ == "_main__":
-    print("Textual CLI")
+if __name__ == "__main__":
+    run()
