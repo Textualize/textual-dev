@@ -73,6 +73,10 @@ console:			# Run the textual console
 diagnose:			# Run the Textual diagnosis tool.
 	$(textual) diagnose
 
+.PHONY: easing
+easing:			# Run the Textual easing preview.
+	$(textual) easing
+
 ##############################################################################
 # Utility.
 .PHONY: repl
