@@ -55,6 +55,12 @@ stricttypecheck:	        # Perform strict static type checks with mypy
 checkall: lint stricttypecheck	# Check all the things
 
 ##############################################################################
+# The main interfaces for the package (for easy in-development testing).
+.PHONY: console
+console:			# Run the textual console
+	$(python) -m $(package)
+
+##############################################################################
 # Utility.
 .PHONY: repl
 repl:				# Start a Python REPL
