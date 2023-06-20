@@ -40,7 +40,6 @@ def console(port: int | None, verbose: bool, exclude: list[str]) -> None:
     """Launch the textual console."""
 
     from rich.console import Console
-
     from textual.devtools.server import _run_devtools
 
     console = Console()

@@ -13,7 +13,6 @@ from aiohttp.abc import Request
 from aiohttp.web_ws import WebSocketResponse
 from rich.console import Console
 from rich.markup import escape
-
 from textual._log import LogGroup
 from textual._time import time
 from textual.devtools.renderables import (

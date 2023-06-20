@@ -14,9 +14,8 @@ from rich.style import Style
 from rich.styled import Styled
 from rich.table import Table
 from rich.text import Text
-from typing_extensions import Literal
-
 from textual._log import LogGroup
+from typing_extensions import Literal
 
 DevConsoleMessageLevel = Literal["info", "warning", "error"]
 

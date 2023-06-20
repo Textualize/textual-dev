@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from rich.panel import Panel
 from rich.text import Text
-
 from textual import events
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal
