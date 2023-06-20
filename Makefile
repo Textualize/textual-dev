@@ -57,6 +57,10 @@ checkall: lint stricttypecheck	# Check all the things
 
 ##############################################################################
 # The main interfaces for the package (for easy in-development testing).
+.PHONY: textual
+textual:			# Show the help for the textual command.
+	$(textual)
+
 .PHONY: console
 console:			# Run the textual console
 	$(textual) console
