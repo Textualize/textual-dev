@@ -2,17 +2,12 @@ from __future__ import annotations
 
 import platform
 import shlex
-import sys
 
 from textual.constants import DEVTOOLS_PORT
 
 from .tools.run import exec_command, run_app
 
-try:
-    import click
-except ImportError:
-    print("Please install 'textual[dev]' to use the 'textual' command")
-    sys.exit(1)
+import click
 
 from importlib_metadata import version
 
