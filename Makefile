@@ -59,7 +59,7 @@ checkall: lint stricttypecheck	# Check all the things
 # The main interfaces for the package (for easy in-development testing).
 .PHONY: console
 console:			# Run the textual console
-	$(textual)
+	$(textual) console
 
 .PHONY: borders
 borders:			# Show the Textual borders preview.
