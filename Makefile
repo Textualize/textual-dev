@@ -8,6 +8,7 @@ lint          := $(run) pylint
 mypy          := $(run) mypy
 black         := $(run) black
 isort         := $(run) isort
+textual       := $(python) -m $(package)
 
 ##############################################################################
 # Setup/update/repo admin targets.
@@ -58,11 +59,11 @@ checkall: lint stricttypecheck	# Check all the things
 # The main interfaces for the package (for easy in-development testing).
 .PHONY: console
 console:			# Run the textual console
-	$(python) -m $(package)
+	$(textual)
 
 .PHONY: borders
 borders:			# Show the Textual borders preview.
-	$(python) -m $(package) borders
+	$(textual) borders
 
 ##############################################################################
 # Utility.
