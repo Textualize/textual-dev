@@ -60,6 +60,10 @@ checkall: lint stricttypecheck	# Check all the things
 console:			# Run the textual console
 	$(python) -m $(package)
 
+.PHONY: borders
+borders:			# Show the Textual borders preview.
+	$(python) -m $(package) borders
+
 ##############################################################################
 # Utility.
 .PHONY: repl
