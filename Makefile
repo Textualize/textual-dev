@@ -12,6 +12,7 @@ isort   := $(run) isort
 .PHONY: setup
 setup:				# Set up the development environment for the tool
 	poetry install --extras dev
+	$(run) pre-commit install
 
 .PHONY: relock
 relock:			# Rebuild the lock file.
