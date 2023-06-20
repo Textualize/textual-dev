@@ -72,4 +72,5 @@ help:				# Display this help
 housekeeping:			# Perform some git housekeeping
 	git fsck
 	git gc --aggressive
+	git remote prune origin
 	git remote update --prune
