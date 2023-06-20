@@ -81,6 +81,10 @@ easing:			# Run the Textual easing preview.
 keys:				# Run the Textual keys tool.
 	$(textual) keys
 
+.PHONY: run
+run:				# Test the textual run command.
+	$(textual) run
+
 ##############################################################################
 # Utility.
 .PHONY: repl
