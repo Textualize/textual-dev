@@ -1,3 +1,6 @@
+Label {
+    width: 100%;
+}
 
 ColorButtons {
     dock: left;
@@ -6,7 +9,7 @@ ColorButtons {
 }
 
 ColorButtons > Button {
-    width: 30;
+    width: 100%;
 }
 
 ColorsView {
@@ -68,7 +71,7 @@ ColorGroup.-active {
 }
 
 
-ColorLabel {
+Label {
     padding: 0 0 1 0;
     content-align: center middle;
     color: $text;
