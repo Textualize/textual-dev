@@ -77,6 +77,10 @@ diagnose:			# Run the Textual diagnosis tool.
 easing:			# Run the Textual easing preview.
 	$(textual) easing
 
+.PHONY: keys
+keys:				# Run the Textual keys tool.
+	$(textual) keys
+
 ##############################################################################
 # Utility.
 .PHONY: repl
