@@ -15,7 +15,7 @@ from rich.console import Console
 from rich.markup import escape
 from textual._log import LogGroup
 from textual._time import time
-from textual.devtools.renderables import (
+from textual_dev.renderables import (
     DevConsoleHeader,
     DevConsoleLog,
     DevConsoleNotice,
