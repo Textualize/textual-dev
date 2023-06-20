@@ -1,17 +1,10 @@
 from __future__ import annotations
 
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Iterable
 
 from importlib_metadata import version
-
-if sys.version_info >= (3, 8):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
-
 from rich.align import Align
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.markup import escape
@@ -21,6 +14,8 @@ from rich.style import Style
 from rich.styled import Styled
 from rich.table import Table
 from rich.text import Text
+from typing_extensions import Literal
+
 from textual._log import LogGroup
 
 DevConsoleMessageLevel = Literal["info", "warning", "error"]
@@ -56,10 +51,10 @@ class DevConsoleLog:
     """Renderable representing a single log message
 
     Args:
-        segments (Iterable[Segment]): The segments to display
-        path (str): The path of the file on the client that the log call was made from
-        line_number (int): The line number of the file on the client the log call was made from
-        unix_timestamp (int): Seconds since January 1st 1970
+        segments: The segments to display
+        path: The path of the file on the client that the log call was made from
+        line_number: The line number of the file on the client the log call was made from
+        unix_timestamp: Seconds since January 1st 1970
     """
 
     def __init__(
@@ -119,8 +114,8 @@ class DevConsoleNotice:
     """Renderable for messages written by the devtools console itself
 
     Args:
-        message (str): The message to display
-        level (DevtoolsMessageLevel): The message level ("info", "warning", or "error").
+        message: The message to display
+        level: The message level ("info", "warning", or "error").
             Determines colors used to render the message and the perceived importance.
     """
 

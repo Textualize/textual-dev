@@ -1,14 +1,16 @@
 from __future__ import annotations
 
 import asyncio
+
 from aiohttp.web import run_app
 from aiohttp.web_app import Application
 from aiohttp.web_request import Request
 from aiohttp.web_routedef import get
 from aiohttp.web_ws import WebSocketResponse
 
-from textual.devtools.client import DEVTOOLS_PORT
-from textual.devtools.service import DevtoolsService
+from ..constants import DEVTOOLS_PORT
+from .client import DEVTOOLS_PORT
+from .service import DevtoolsService
 
 DEFAULT_SIZE_CHANGE_POLL_DELAY_SECONDS = 2
 
@@ -17,10 +19,10 @@ async def websocket_handler(request: Request) -> WebSocketResponse:
     """aiohttp websocket handler for sending data between devtools client and server
 
     Args:
-        request (Request): The request to the websocket endpoint
+        request: The request to the websocket endpoint
 
     Returns:
-        WebSocketResponse: The websocket response
+        The websocket response
     """
     service: DevtoolsService = request.app["service"]
     return await service.handle(request)
@@ -37,15 +39,20 @@ async def _on_startup(app: Application) -> None:
     await service.start()
 
 
-def _run_devtools(verbose: bool, exclude: list[str] | None = None) -> None:
+def _run_devtools(
+    verbose: bool, exclude: list[str] | None = None, port: int | None = None
+) -> None:
     app = _make_devtools_aiohttp_app(verbose=verbose, exclude=exclude)
 
-    def noop_print(_: str):
-        return None
+    def noop_print(_: str) -> None:
+        pass
 
     try:
         run_app(
-            app, port=DEVTOOLS_PORT, print=noop_print, loop=asyncio.get_event_loop()
+            app,
+            port=DEVTOOLS_PORT if port is None else port,
+            print=noop_print,
+            loop=asyncio.get_event_loop(),
         )
     except OSError:
         from rich import print
