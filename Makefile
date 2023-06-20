@@ -1,12 +1,13 @@
 #############################################################################
 # Common make values.
-package := textual_dev
-run     := poetry run
-python  := $(run) python
-lint    := $(run) pylint
-mypy    := $(run) mypy
-black   := $(run) black
-isort   := $(run) isort
+.DEFAULT_GOAL := help
+package       := textual_dev
+run           := poetry run
+python        := $(run) python
+lint          := $(run) pylint
+mypy          := $(run) mypy
+black         := $(run) black
+isort         := $(run) isort
 
 ##############################################################################
 # Setup/update/repo admin targets.
