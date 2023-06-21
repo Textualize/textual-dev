@@ -51,11 +51,11 @@ class Bar(Widget):
         )
 
 
-class EasingApp(App):
+class EasingApp(App[None]):
     position = reactive(START_POSITION)
     duration = var(1.0)
 
-    def on_load(self):
+    def on_load(self) -> None:
         self.bind(
             "ctrl+p", "focus('duration-input')", description="Focus: Duration Input"
         )
@@ -83,7 +83,7 @@ class EasingApp(App):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.animated_bar.animation_running = True
 
-        def _animation_complete():
+        def _animation_complete() -> None:
             self.animated_bar.animation_running = False
 
         target_position = (
