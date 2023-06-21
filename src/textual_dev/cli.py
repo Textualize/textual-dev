@@ -17,7 +17,7 @@ WINDOWS = platform.system() == "Windows"
 
 @click.group()
 @click.version_option(version("textual"))
-def run():
+def run() -> None:
     pass
 
 
@@ -197,7 +197,7 @@ def _run_app(
 
 
 @run.command("borders")
-def borders():
+def borders() -> None:
     """Explore the border styles available in Textual."""
     from textual_dev.previews import borders
 
@@ -205,7 +205,7 @@ def borders():
 
 
 @run.command("easing")
-def easing():
+def easing() -> None:
     """Explore the animation easing functions available in Textual."""
     from textual_dev.previews import easing
 
@@ -213,7 +213,7 @@ def easing():
 
 
 @run.command("colors")
-def colors():
+def colors() -> None:
     """Explore the design system."""
     from textual_dev.previews import colors
 
@@ -221,7 +221,7 @@ def colors():
 
 
 @run.command("keys")
-def keys():
+def keys() -> None:
     """Show key events."""
     from textual_dev.previews import keys
 
@@ -229,7 +229,7 @@ def keys():
 
 
 @run.command("diagnose")
-def run_diagnose():
+def run_diagnose() -> None:
     """Print information about the Textual environment."""
     from textual_dev.tools.diagnose import diagnose
 
