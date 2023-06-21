@@ -15,11 +15,8 @@ from rich.console import Console
 from rich.markup import escape
 from textual._log import LogGroup
 from textual._time import time
-from textual_dev.renderables import (
-    DevConsoleHeader,
-    DevConsoleLog,
-    DevConsoleNotice,
-)
+
+from textual_dev.renderables import DevConsoleHeader, DevConsoleLog, DevConsoleNotice
 
 QUEUEABLE_TYPES = {"client_log", "client_spillover"}
 

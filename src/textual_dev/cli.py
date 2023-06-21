@@ -3,13 +3,11 @@ from __future__ import annotations
 import platform
 import shlex
 
+import click
+from importlib_metadata import version
 from textual.constants import DEVTOOLS_PORT
 
 from .tools.run import exec_command, run_app
-
-import click
-
-from importlib_metadata import version
 
 WINDOWS = platform.system() == "Windows"
 """True if we're running on Windows."""
@@ -36,6 +34,7 @@ def console(port: int | None, verbose: bool, exclude: list[str]) -> None:
     """Launch the textual console."""
 
     from rich.console import Console
+
     from textual_dev.server import _run_devtools
 
     console = Console()

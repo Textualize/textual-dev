@@ -7,8 +7,8 @@ from aiohttp.web_app import Application
 from aiohttp.web_request import Request
 from aiohttp.web_routedef import get
 from aiohttp.web_ws import WebSocketResponse
-
 from textual.constants import DEVTOOLS_PORT
+
 from .service import DevtoolsService
 
 DEFAULT_SIZE_CHANGE_POLL_DELAY_SECONDS = 2
