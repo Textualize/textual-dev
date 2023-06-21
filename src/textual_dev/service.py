@@ -49,7 +49,7 @@ class DevtoolsService:
         self.shutdown_event = asyncio.Event()
         self.clients: list[ClientHandler] = []
 
-    async def start(self):
+    async def start(self) -> None:
         """Starts devtools tasks"""
         self.size_poll_task = asyncio.create_task(self._console_size_poller())
         self.console.print(DevConsoleHeader(verbose=self.verbose))
