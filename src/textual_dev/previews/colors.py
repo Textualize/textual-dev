@@ -50,7 +50,7 @@ class ColorsView(VerticalScroll):
                         yield ColorBar("$text-disabled", classes="disabled")
 
 
-class ColorsApp(App):
+class ColorsApp(App[None]):
     CSS_PATH = "colors.css"
 
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]

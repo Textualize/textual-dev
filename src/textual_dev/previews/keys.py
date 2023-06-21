@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+from typing import Optional
+
 from rich.panel import Panel
 from rich.text import Text
 from textual import events
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal
-from textual.reactive import Reactive, var
+from textual.reactive import var
 from textual.widgets import Button, Header, TextLog
 
 INSTRUCTIONS = """\
@@ -19,7 +21,7 @@ class KeyLog(TextLog, inherit_bindings=False):
     """We don't want to handle scroll keys."""
 
 
-class KeysApp(App, inherit_bindings=False):
+class KeysApp(App[None], inherit_bindings=False):
     """Show key events in a text log."""
 
     TITLE = "Textual Keys"
@@ -34,7 +36,7 @@ class KeysApp(App, inherit_bindings=False):
     }
     """
 
-    last_key: Reactive[str | None] = var(None)
+    last_key: var[str | None] = var[Optional[str]](None)
 
     def compose(self) -> ComposeResult:
         yield Header()

@@ -31,7 +31,7 @@ class BorderButtons(Vertical):
                 yield Button(border, id=border)
 
 
-class BorderApp(App):
+class BorderApp(App[None]):
     """Demonstrates the border styles."""
 
     CSS = """
