@@ -43,6 +43,15 @@ isort = "^5.11.0"
 pylint = "*"
 mypy = "*"
 time-machine = "^2.6.0"
+pytest-aiohttp = "^1.0.4"
 
 [tool.poetry.scripts]
 textual = "textual_dev.cli:run"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = [
+    "integration_test: marks tests as slow integration tests (deselect with '-m \"not integration_test\"')",
+]
