@@ -42,6 +42,7 @@ pre-commit = "^2.13.0"
 isort = "^5.11.0"
 pylint = "*"
 mypy = "*"
+time-machine = "^2.6.0"
 
 [tool.poetry.scripts]
 textual = "textual_dev.cli:run"
