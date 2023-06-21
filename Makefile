@@ -4,6 +4,7 @@
 package       := textual_dev
 run           := poetry run
 python        := $(run) python
+pytest        := $(run) pytest
 lint          := $(run) pylint
 mypy          := $(run) mypy
 black         := $(run) black
@@ -52,8 +53,12 @@ typecheck:			# Perform static type checks with mypy
 stricttypecheck:	        # Perform strict static type checks with mypy
 	$(mypy) --scripts-are-modules --strict src/$(package)
 
+.PHONY: test
+test:				# Run the unit tests.
+	$(pytest) tests/
+
 .PHONY: checkall
-checkall: lint stricttypecheck	# Check all the things
+checkall: lint stricttypecheck test	# Check all the things
 
 ##############################################################################
 # The main interfaces for the package (for easy in-development testing).
