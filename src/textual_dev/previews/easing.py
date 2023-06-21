@@ -99,17 +99,17 @@ class EasingApp(App):
             on_complete=_animation_complete,
         )
 
-    def watch_position(self, value: int):
+    def watch_position(self, value: int) -> None:
         self.animated_bar.position = value
         self.opacity_widget.styles.opacity = 1 - value / END_POSITION
 
-    def on_input_changed(self, event: Input.Changed):
+    def on_input_changed(self, event: Input.Changed) -> None:
         if event.input.id == "duration-input":
             new_duration = _try_float(event.value)
             if new_duration is not None:
                 self.duration = new_duration
 
-    def action_toggle_dark(self):
+    def action_toggle_dark(self) -> None:
         self.dark = not self.dark
 
 

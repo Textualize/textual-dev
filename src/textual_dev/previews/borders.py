@@ -50,7 +50,7 @@ class BorderApp(App):
     }
     """
 
-    def compose(self):
+    def compose(self) -> ComposeResult:
         yield BorderButtons()
         self.text = Label(TEXT, id="text")
         self.text.shrink = True
