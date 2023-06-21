@@ -21,6 +21,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Typing :: Typed",
 ]
+include = [
+    "src/textual_dev/py.typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
