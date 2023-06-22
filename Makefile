@@ -30,7 +30,7 @@ update:			# Update the development environment
 # Reformatting tools.
 .PHONY: black
 black:				# Run black over the code
-	$(black) src/$(package)
+	$(black) src/$(package) tests/
 
 .PHONY: isort
 isort:				# Run isort over the code
