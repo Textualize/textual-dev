@@ -15,8 +15,8 @@ from aiohttp import ClientConnectorError, ClientResponseError, ClientWebSocketRe
 from rich.console import Console
 from rich.segment import Segment
 
-from .._log import LogGroup, LogVerbosity
-from ..constants import DEVTOOLS_PORT
+from textual._log import LogGroup, LogVerbosity
+from textual.constants import DEVTOOLS_PORT
 
 WEBSOCKET_CONNECT_TIMEOUT = 3
 LOG_QUEUE_MAXSIZE = 512
