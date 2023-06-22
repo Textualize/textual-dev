@@ -3,7 +3,7 @@ from __future__ import annotations
 import inspect
 from typing import TYPE_CHECKING, cast
 
-from .._log import LogGroup, LogVerbosity
+from textual._log import LogGroup, LogVerbosity
 from .client import DevtoolsLog
 
 if TYPE_CHECKING:
