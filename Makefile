@@ -15,7 +15,7 @@ textual       := $(python) -m $(package)
 # Setup/update/repo admin targets.
 .PHONY: setup
 setup:				# Set up the development environment for the tool
-	poetry install --extras dev
+	poetry install
 	$(run) pre-commit install
 
 .PHONY: relock

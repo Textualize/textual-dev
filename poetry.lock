@@ -775,6 +775,17 @@ files = [
 ]
 
 [[package]]
+name = "msgpack-types"
+version = "0.2.0"
+description = "Type stubs for msgpack"
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "msgpack-types-0.2.0.tar.gz", hash = "sha256:b6b7ce9f52599f9dc3497006be8cf6bed7bd2c83fa48c4df43ac6958b97b0720"},
+    {file = "msgpack_types-0.2.0-py3-none-any.whl", hash = "sha256:7e5bce9e3bba9fe08ed14005ad107aa44ea8d4b779ec28b8db880826d4c67303"},
+]
+
+[[package]]
 name = "multidict"
 version = "6.0.4"
 description = "multidict implementation"
@@ -1577,10 +1588,7 @@ files = [
 docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
 testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more-itertools", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)"]
 
-[extras]
-dev = []
-
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7"
-content-hash = "19403aaf73efc9f4a3ebbfb0f44766cd2628d6b2698c20d31cddc1fc9d0c36ec"
+content-hash = "dd0c99765aa648791a9eb00ca0049bb8f8770c6c7ea769ef6ebd5a43347f6f7c"
