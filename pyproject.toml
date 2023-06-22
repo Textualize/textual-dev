@@ -45,6 +45,10 @@ mypy = "*"
 time-machine = "^2.6.0"
 pytest-aiohttp = "^1.0.4"
 
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry.scripts]
 textual = "textual_dev.cli:run"
 
