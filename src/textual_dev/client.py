@@ -14,7 +14,6 @@ import msgpack
 from aiohttp import ClientConnectorError, ClientResponseError, ClientWebSocketResponse
 from rich.console import Console
 from rich.segment import Segment
-
 from textual._log import LogGroup, LogVerbosity
 from textual.constants import DEVTOOLS_PORT
 
