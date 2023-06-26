@@ -214,9 +214,9 @@ def easing() -> None:
 @run.command("colors")
 def colors() -> None:
     """Explore the design system."""
-    from textual_dev.previews import colors
+    from textual_dev.previews import ColorsApp
 
-    colors.app.run()
+    ColorsApp().run()
 
 
 @run.command("keys")

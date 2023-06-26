@@ -70,6 +70,10 @@ textual:			# Show the help for the textual command.
 borders:			# Show the Textual borders preview.
 	$(textual) borders
 
+.PHONY: colors
+colors:			# Show the Textual colours preview.
+	$(textual) colors
+
 .PHONY: console
 console:			# Run the textual console
 	$(textual) console

@@ -73,7 +73,5 @@ class ColorsApp(App[None]):
         group.scroll_visible(top=True, speed=150)
 
 
-app = ColorsApp()
-
 if __name__ == "__main__":
-    app.run()
+    ColorsApp().run()
