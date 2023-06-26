@@ -67,7 +67,5 @@ class KeysApp(App[None], inherit_bindings=False):
             self.query_one(KeyLog).clear()
 
 
-app = KeysApp()
-
 if __name__ == "__main__":
-    app.run()
+    KeysApp().run()

@@ -222,9 +222,9 @@ def colors() -> None:
 @run.command("keys")
 def keys() -> None:
     """Show key events."""
-    from textual_dev.previews import keys
+    from textual_dev.previews import KeysApp
 
-    keys.app.run()
+    KeysApp().run()
 
 
 @run.command("diagnose")
