@@ -7,7 +7,6 @@ on:
       - '**.py'
       - '**.pyi'
       - '**.css'
-      - '**.ambr'
       - '**.lock'
       - 'Makefile'
 
