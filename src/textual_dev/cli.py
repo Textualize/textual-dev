@@ -206,9 +206,9 @@ def borders() -> None:
 @run.command("easing")
 def easing() -> None:
     """Explore the animation easing functions available in Textual."""
-    from textual_dev.previews import easing
+    from textual_dev.previews import EasingApp
 
-    easing.app.run()
+    EasingApp().run()
 
 
 @run.command("colors")

@@ -2,5 +2,6 @@
 
 from .borders import BorderApp
 from .colors import ColorsApp
+from .easing import EasingApp
 
-__all__ = ["BorderApp", "ColorsApp"]
+__all__ = ["BorderApp", "ColorsApp", "EasingApp"]

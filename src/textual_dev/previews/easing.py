@@ -52,6 +52,8 @@ class Bar(Widget):
 
 
 class EasingApp(App[None]):
+    CSS_PATH = "easing.css"
+
     position = reactive(START_POSITION)
     duration = var(1.0)
 
@@ -120,6 +122,5 @@ def _try_float(string: str) -> float | None:
         return None
 
 
-app = EasingApp(css_path="easing.css")
 if __name__ == "__main__":
-    app.run()
+    EasingApp().run()
