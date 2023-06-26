@@ -9,22 +9,14 @@ from io import StringIO
 from time import time
 from typing import Any, NamedTuple, Type
 
-from rich.console import Console
-from rich.segment import Segment
-
-from textual._log import LogGroup, LogVerbosity
-
-
 import aiohttp
 import msgpack
-from aiohttp import (
-    ClientConnectorError,
-    ClientResponseError,
-    ClientWebSocketResponse,
-)
+from aiohttp import ClientConnectorError, ClientResponseError, ClientWebSocketResponse
+from rich.console import Console
+from rich.segment import Segment
+from textual._log import LogGroup, LogVerbosity
+from textual.constants import DEVTOOLS_PORT
 
-
-DEVTOOLS_PORT = 8081
 WEBSOCKET_CONNECT_TIMEOUT = 3
 LOG_QUEUE_MAXSIZE = 512
 
@@ -33,16 +25,16 @@ class DevtoolsLog(NamedTuple):
     """A devtools log message.
 
     Attributes:
-        objects_or_string (tuple[Any, ...]): Corresponds to the data that will
+        objects_or_string: Corresponds to the data that will
             ultimately be passed to Console.print in order to generate the log
             Segments.
-        caller (inspect.FrameInfo): Information about where this log message was
+        caller: Information about where this log message was
             created. In other words, where did the user call `print` or `App.log`
             from. Used to display line number and file name in the devtools window.
     """
 
     objects_or_string: tuple[Any, ...] | str
-    caller: inspect.FrameInfo
+    caller: inspect.Traceback
 
 
 class DevtoolsConsole(Console):
@@ -54,7 +46,7 @@ class DevtoolsConsole(Console):
         """Return the list of Segments that have be printed using this console
 
         Returns:
-            list[Segment]: The list of Segments that have been printed using this console
+            The list of Segments that have been printed using this console
         """
         with self._record_buffer_lock:
             segments = self._record_buffer[:]
@@ -94,11 +86,13 @@ class DevtoolsClient:
     ```
 
     Args:
-        host (str): The host the devtools server is running on, defaults to "127.0.0.1"
-        port (int): The port the devtools server is accessed via, defaults to 8081
+        host: The host the devtools server is running on, defaults to "127.0.0.1"
+        port: The port the devtools server is accessed via, `DEVTOOLS_PORT` by default.
     """
 
-    def __init__(self, host: str = "127.0.0.1", port: int = DEVTOOLS_PORT) -> None:
+    def __init__(self, host: str = "127.0.0.1", port: int | None = None) -> None:
+        if port is None:
+            port = DEVTOOLS_PORT
         self.url: str = f"ws://{host}:{port}"
         self.session: aiohttp.ClientSession | None = None
         self.log_queue_task: Task | None = None
@@ -136,6 +130,7 @@ class DevtoolsClient:
             change, it will update its own Console to ensure it renders at
             the correct width for server-side display.
             """
+            assert self.websocket is not None
             async for message in self.websocket:
                 if message.type == aiohttp.WSMsgType.TEXT:
                     message_json = json.loads(message.data)
@@ -197,7 +192,7 @@ class DevtoolsClient:
         """Checks connection to devtools server.
 
         Returns:
-            bool: True if this host is connected to the server. False otherwise.
+            True if this host is connected to the server. False otherwise.
         """
         if not self.session or not self.websocket:
             return False
@@ -212,12 +207,12 @@ class DevtoolsClient:
         """Queue a log to be sent to the devtools server for display.
 
         Args:
-            log (DevtoolsLog): The log to write to devtools
+            log: The log to write to devtools
         """
         if isinstance(log.objects_or_string, str):
-            self.console.print(log.objects_or_string)
+            self.console.print(log.objects_or_string, markup=False)
         else:
-            self.console.print(*log.objects_or_string)
+            self.console.print(*log.objects_or_string, markup=False)
 
         segments = self.console.export_segments()
 
@@ -260,10 +255,10 @@ class DevtoolsClient:
         """Pickle a list of Segments
 
         Args:
-            segments (list[Segment]): A list of Segments to encode
+            segments: A list of Segments to encode
 
         Returns:
-            bytes: The Segment list pickled with the latest protocol.
+            The Segment list pickled with the latest protocol.
         """
         pickled = pickle.dumps(segments, protocol=4)
         return pickled
