@@ -65,7 +65,5 @@ class BorderApp(App[None]):
         )
 
 
-app = BorderApp()
-
 if __name__ == "__main__":
-    app.run()
+    BorderApp().run()

@@ -198,9 +198,9 @@ def _run_app(
 @run.command("borders")
 def borders() -> None:
     """Explore the border styles available in Textual."""
-    from textual_dev.previews import borders
+    from textual_dev.previews import BorderApp
 
-    borders.app.run()
+    BorderApp().run()
 
 
 @run.command("easing")
