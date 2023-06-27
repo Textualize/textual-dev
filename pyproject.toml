@@ -28,7 +28,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-textual = "*"
+textual = ">=0.29.0"
 aiohttp = ">=3.8.1"
 click = ">=8.1.2"
 msgpack = ">=1.0.3"
