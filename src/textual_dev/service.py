@@ -125,7 +125,7 @@ class DevtoolsService:
 
 class ClientHandler:
     """Handles a single client connection to the devtools.
-    A single DevtoolsService managers many ClientHandlers. A single ClientHandler
+    A single DevtoolsService manages many ClientHandlers. A single ClientHandler
     corresponds to a single running Textual application instance, and is responsible
     for communication with that Textual app.
     """
