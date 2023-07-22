@@ -2,13 +2,13 @@ Label {
     width: 100%;
 }
 
-ColorButtons {
+ThemeColorButtons {
     dock: left;
     overflow-y: auto;
     width: 30;
 }
 
-ColorButtons > Button {
+ThemeColorButtons > Button {
     width: 100%;
 }
 
@@ -59,6 +59,10 @@ ColorGroup.-active {
 
 .text {
     color: $text;
+}
+
+.text-left {
+    content-align: left middle;
 }
 
 .muted {
