@@ -1,7 +1,7 @@
 from click.testing import CliRunner
 from importlib_metadata import version
 
-from textual.cli.cli import run
+from textual_dev.cli import run
 
 
 def test_cli_version():
