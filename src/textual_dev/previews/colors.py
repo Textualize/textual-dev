@@ -6,9 +6,8 @@ from textual.widgets import Button, Footer, Label, Static
 
 class ColorButtons(VerticalScroll):
     def compose(self) -> ComposeResult:
-        for border in ColorSystem.COLOR_NAMES:
-            if border:
-                yield Button(border, id=border)
+        for color_name in ColorSystem.COLOR_NAMES:
+            yield Button(color_name, id=color_name)
 
 
 class ColorBar(Static):
