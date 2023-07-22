@@ -10,8 +10,8 @@ from rich.console import ConsoleDimensions
 from rich.panel import Panel
 
 from textual.constants import DEVTOOLS_PORT
-from textual.devtools.client import DevtoolsClient
-from textual.devtools.redirect_output import DevtoolsLog
+from textual_dev.client import DevtoolsClient
+from textual_dev.redirect_output import DevtoolsLog
 
 from utilities.wait_for_predicate import wait_for_predicate
 
