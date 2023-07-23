@@ -9,6 +9,9 @@ on:
       - '**.css'
       - '**.lock'
       - 'Makefile'
+  push:
+    branches:
+      - 'main'
 
 jobs:
   build:
