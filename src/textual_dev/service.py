@@ -9,7 +9,7 @@ from typing import Any
 
 import msgpack
 from aiohttp import WSMsgType
-from aiohttp.abc import Request
+from aiohttp.web_request import Request
 from aiohttp.web_ws import WebSocketResponse
 from rich.console import Console
 from rich.markup import escape

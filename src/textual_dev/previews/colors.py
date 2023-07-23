@@ -1,5 +1,6 @@
+from textual._color_constants import COLOR_NAME_TO_RGB
 from textual.app import App, ComposeResult
-from textual.color import COLOR_NAME_TO_RGB, Color
+from textual.color import Color
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.design import ColorSystem
 from textual.widgets import Button, Footer, Label, Static, TabbedContent
