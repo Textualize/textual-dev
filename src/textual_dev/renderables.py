@@ -21,7 +21,8 @@ DevConsoleMessageLevel = Literal["info", "warning", "error"]
 
 
 class DevConsoleHeader:
-    def __init__(self, verbose: bool = False) -> None:
+    def __init__(self, port: int | None = None, verbose: bool = False) -> None:
+        self.port = port
         self.verbose = verbose
 
     def __rich_console__(
@@ -29,7 +30,7 @@ class DevConsoleHeader:
     ) -> RenderResult:
         preamble = Text.from_markup(
             f"[bold]Textual Development Console [magenta]v{version('textual')}\n"
-            "[magenta]Run a Textual app with [reverse]textual run --dev my_app.py[/] to connect.\n"
+            f"[magenta]Run a Textual app with [reverse]{self._run_command()}[/] to connect.\n"
             "[magenta]Press [reverse]Ctrl+C[/] to quit."
         )
         if self.verbose:
@@ -44,6 +45,12 @@ class DevConsoleHeader:
             yield padding
             yield from line
             yield new_line
+
+    def _run_command(self) -> str:
+        if self.port:
+            return f"textual run --port {self.port} --dev my_app.py"
+        else:
+            return "textual run --dev my_app.py"
 
 
 class DevConsoleLog:
