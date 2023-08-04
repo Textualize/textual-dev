@@ -79,14 +79,14 @@ class ColorsApp(App[None]):
     def compose(self) -> ComposeResult:
         yield Footer()
         with ColorTabs("Theme Colors", "Named Colors"):
-            yield Content(ThemeColorButtons())
-            yield Vertical(NamedColorsView())
+            yield Content(ThemeColorButtons(), id="theme")
+            yield NamedColorsView()
 
     def on_mount(self) -> None:
         self.call_after_refresh(self.update_view)
 
     def update_view(self) -> None:
-        content = self.query_one("Content", Content)
+        content = self.query_one("#theme", Content)
         content.mount(ThemeColorsView())
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
