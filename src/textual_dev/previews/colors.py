@@ -32,7 +32,7 @@ class ColorsView(VerticalScroll):
     pass
 
 
-class ColorTabs(TabbedContent, inherit_css=False):
+class ColorTabs(TabbedContent):
     pass
 
 
@@ -85,9 +85,10 @@ class ColorsApp(App[None]):
     def on_mount(self) -> None:
         self.call_after_refresh(self.update_view)
 
-    def update_view(self) -> None:
+    async def update_view(self) -> None:
         content = self.query_one("#theme", Content)
-        content.mount(ThemeColorsView())
+        await content.mount(ThemeColorsView())
+       
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.query(ColorGroup).remove_class("-active")
