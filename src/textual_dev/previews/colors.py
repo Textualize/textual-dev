@@ -88,7 +88,6 @@ class ColorsApp(App[None]):
     async def update_view(self) -> None:
         content = self.query_one("#theme", Content)
         await content.mount(ThemeColorsView())
-       
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.query(ColorGroup).remove_class("-active")
