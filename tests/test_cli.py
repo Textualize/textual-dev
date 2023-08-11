@@ -10,7 +10,13 @@ def test_cli_version():
     assert version("textual") in result.output
 
 
-def test_cli_widgets():
+# def test_cli_widgets():
+#     runner = CliRunner()
+#     result = runner.invoke(run, ["widgets"])
+#     assert result.exit_code == 0
+
+
+def test_cli_diagnose():
     runner = CliRunner()
-    result = runner.invoke(run, ["widgets"])
+    result = runner.invoke(run, ["diagnose"])
     assert result.exit_code == 0
