@@ -5,6 +5,10 @@ on:
     paths:
       - '.github/workflows/black_format.yml'
       - '**.py'
+  push:
+    paths:
+      - '.github/workflows/black_format.yml'
+      - '**.py'
 
 jobs:
   black-format-check:
