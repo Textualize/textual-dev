@@ -20,3 +20,9 @@ def test_cli_diagnose():
     runner = CliRunner()
     result = runner.invoke(run, ["diagnose"])
     assert result.exit_code == 0
+
+
+def test_cli_keys():
+    runner = CliRunner()
+    result = runner.invoke(run, ["keys"])
+    assert result.exit_code == 0
