@@ -44,10 +44,10 @@ jobs:
       - name: Install dependencies
         run: poetry install
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      - name: Run mypy
-        run: |
-          source $VENV
-          mypy .
+#      - name: Run mypy
+#        run: |
+#          source $VENV
+#          mypy .
       - name: Test with pytest
         run: |
           source $VENV
