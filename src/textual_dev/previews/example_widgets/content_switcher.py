@@ -28,7 +28,7 @@ comedic genre films directed by Edgar Wright.
 
 
 def content_switcher_example(id: str) -> ComposeResult:
-    table = DataTable(id="data-table")
+    table: DataTable = DataTable(id="data-table")
     table.add_columns("Book", "Year")
     table.add_rows(
         [

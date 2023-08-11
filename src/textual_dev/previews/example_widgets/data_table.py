@@ -17,7 +17,7 @@ ROWS = [
 
 
 def data_table_example(id: str) -> ComposeResult:
-    table = DataTable()
+    table: DataTable = DataTable()
     table.add_columns(*ROWS[0])
     table.add_rows(ROWS[1:])
 
