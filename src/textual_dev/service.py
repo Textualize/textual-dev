@@ -37,7 +37,7 @@ class DevtoolsService:
         Args:
             update_frequency: The number of seconds to wait between
                 sending updates of the console size to connected clients.
-            port: Port console is running on.
+            port: The port the devtools server is running on.
             verbose: Enable verbose logging on client.
             exclude: List of log groups to exclude from output.
         """

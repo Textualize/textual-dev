@@ -21,6 +21,13 @@ DevConsoleMessageLevel = Literal["info", "warning", "error"]
 
 
 class DevConsoleHeader:
+    """Renderable representing the header at the top of the console
+
+    Args:
+        port: The port the devtools server is running on.
+        verbose: Whether verbose logging is enabled
+    """
+
     def __init__(self, port: int | None = None, verbose: bool = False) -> None:
         self.port = port
         self.verbose = verbose
@@ -47,6 +54,11 @@ class DevConsoleHeader:
             yield new_line
 
     def _run_command(self) -> str:
+        """Get help text for the user to connect to the console
+
+        Returns:
+            The command a user can run to connect a Textual app to the dev server
+        """
         if self.port:
             return f"textual run --port {self.port} --dev my_app.py"
         else:
