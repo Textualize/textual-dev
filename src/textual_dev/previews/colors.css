@@ -18,7 +18,7 @@ ColorsView {
     align: center middle;
     overflow-x: auto;
     background: $background;
-    scrollbar-gutter: stable;
+    scrollbar-gutter: stable;    
 }
 
 ColorItem {
@@ -55,6 +55,10 @@ ColorGroup {
 
 ColorGroup.-active {
     border: wide $secondary;
+}
+
+NamedColorsView {
+    height: 1fr;
 }
 
 .text {
