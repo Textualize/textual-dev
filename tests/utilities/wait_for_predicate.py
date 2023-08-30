@@ -20,7 +20,7 @@ async def wait_for_predicate(
         poll_delay_secs (float): The number of seconds to wait between each call to the
             predicate function.
     """
-    time_taken = 0
+    time_taken = 0.0
     while True:
         result = predicate()
         if result:

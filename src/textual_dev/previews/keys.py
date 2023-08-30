@@ -8,7 +8,7 @@ from textual import events
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal
 from textual.reactive import var
-from textual.widgets import Button, Header, TextLog
+from textual.widgets import Button, Header, RichLog
 
 INSTRUCTIONS = """\
 [u]Press some keys![/]
@@ -17,7 +17,7 @@ To quit the app press [b]ctrl+c[/b] [i]twice[/i] or press the Quit button below.
 """
 
 
-class KeyLog(TextLog, inherit_bindings=False):
+class KeyLog(RichLog, inherit_bindings=False):
     """We don't want to handle scroll keys."""
 
 

@@ -1,6 +1,8 @@
+from typing import cast
 from textual.app import App, ComposeResult
 from textual.containers import Vertical
 from textual.css.constants import VALID_BORDER
+from textual.css.types import EdgeType
 from textual.widgets import Button, Label
 
 TEXT = """I must not fear.
@@ -60,7 +62,7 @@ class BorderApp(App[None]):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.text.border_title = event.button.id
         self.text.styles.border = (
-            event.button.id,
+            cast(EdgeType, event.button.id),
             self.stylesheet._variables["secondary"],
         )
 

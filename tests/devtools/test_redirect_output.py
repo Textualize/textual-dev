@@ -4,7 +4,7 @@ from datetime import datetime
 import msgpack
 import time_machine
 
-from textual.devtools.redirect_output import StdoutRedirector
+from textual_dev.redirect_output import StdoutRedirector
 
 TIMESTAMP = 1649166819
 

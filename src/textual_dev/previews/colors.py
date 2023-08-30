@@ -1,14 +1,15 @@
+from textual._color_constants import COLOR_NAME_TO_RGB
 from textual.app import App, ComposeResult
+from textual.color import Color
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.design import ColorSystem
-from textual.widgets import Button, Footer, Label, Static
+from textual.widgets import Button, Footer, Label, Static, TabbedContent
 
 
-class ColorButtons(VerticalScroll):
+class ThemeColorButtons(VerticalScroll):
     def compose(self) -> ComposeResult:
-        for border in ColorSystem.COLOR_NAMES:
-            if border:
-                yield Button(border, id=border)
+        for color_name in ColorSystem.COLOR_NAMES:
+            yield Button(color_name, id=color_name)
 
 
 class ColorBar(Static):
@@ -28,6 +29,26 @@ class Content(Vertical):
 
 
 class ColorsView(VerticalScroll):
+    pass
+
+
+class ColorTabs(TabbedContent):
+    pass
+
+
+class NamedColorsView(ColorsView):
+    def compose(self) -> ComposeResult:
+        with ColorGroup(id=f"group-named"):
+            for name, rgb in COLOR_NAME_TO_RGB.items():
+                color = Color(*rgb)
+                with ColorItem() as ci:
+                    ci.styles.background = name
+                    yield ColorBar(name, classes="text")
+                    yield ColorBar(f"{color.hex6}", classes="text")
+                    yield ColorBar(f"{color.rgb}", classes="text text-left")
+
+
+class ThemeColorsView(ColorsView):
     def compose(self) -> ComposeResult:
         LEVELS = [
             "darken-3",
@@ -56,15 +77,17 @@ class ColorsApp(App[None]):
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
 
     def compose(self) -> ComposeResult:
-        yield Content(ColorButtons())
         yield Footer()
+        with ColorTabs("Theme Colors", "Named Colors"):
+            yield Content(ThemeColorButtons(), id="theme")
+            yield NamedColorsView()
 
     def on_mount(self) -> None:
         self.call_after_refresh(self.update_view)
 
-    def update_view(self) -> None:
-        content = self.query_one("Content", Content)
-        content.mount(ColorsView())
+    async def update_view(self) -> None:
+        content = self.query_one("#theme", Content)
+        await content.mount(ThemeColorsView())
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.query(ColorGroup).remove_class("-active")

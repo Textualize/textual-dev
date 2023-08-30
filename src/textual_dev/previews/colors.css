@@ -2,13 +2,13 @@ Label {
     width: 100%;
 }
 
-ColorButtons {
+ThemeColorButtons {
     dock: left;
     overflow-y: auto;
     width: 30;
 }
 
-ColorButtons > Button {
+ThemeColorButtons > Button {
     width: 100%;
 }
 
@@ -18,7 +18,7 @@ ColorsView {
     align: center middle;
     overflow-x: auto;
     background: $background;
-    scrollbar-gutter: stable;
+    scrollbar-gutter: stable;    
 }
 
 ColorItem {
@@ -57,8 +57,16 @@ ColorGroup.-active {
     border: wide $secondary;
 }
 
+NamedColorsView {
+    height: 1fr;
+}
+
 .text {
     color: $text;
+}
+
+.text-left {
+    content-align: left middle;
 }
 
 .muted {
