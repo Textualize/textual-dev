@@ -5,7 +5,7 @@ import shlex
 
 import click
 from importlib_metadata import version
-from textual.constants import DEVTOOLS_HOST, DEVTOOLS_PORT
+from textual.constants import DEVTOOLS_PORT
 
 from .tools.run import exec_command, run_app
 
@@ -92,20 +92,12 @@ def _pre_run_warnings() -> None:
 @click.argument("import_name", metavar="FILE or FILE:APP")
 @click.option("--dev", "dev", help="Enable development mode.", is_flag=True)
 @click.option(
-    "--host",
-    "host",
-    type=str,
-    default=None,
-    metavar="HOST",
-    help=f"Host where the development console is running. Defaults to {DEVTOOLS_HOST}.",
-)
-@click.option(
     "--port",
     "port",
     type=int,
     default=None,
     metavar="PORT",
-    help=f"Port where the development console is running. Defaults to {DEVTOOLS_PORT}.",
+    help=f"Port to use for the development mode console. Defaults to {DEVTOOLS_PORT}.",
 )
 @click.option(
     "--press", "press", default=None, help="Comma separated keys to simulate press."
@@ -139,7 +131,6 @@ def _pre_run_warnings() -> None:
 def _run_app(
     import_name: str,
     dev: bool,
-    host: str | None,
     port: int | None,
     press: str | None,
     screenshot: int | None,
@@ -185,8 +176,6 @@ def _run_app(
         features.add("devtools")
 
     environment["TEXTUAL"] = ",".join(sorted(features))
-    if host is not None:
-        environment["TEXTUAL_DEVTOOLS_HOST"] = str(host)
     if port is not None:
         environment["TEXTUAL_DEVTOOLS_PORT"] = str(port)
     if press is not None:
