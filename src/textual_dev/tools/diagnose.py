@@ -91,7 +91,17 @@ def _guess_term() -> str:
         if term_version is not None:
             term_program = f"{term_program} ({term_version})"
 
-    return "*Unknown*" if term_program is None else term_program
+    # Seems we can't work this out.
+    if term_program is None:
+        term_program = "*Unknown*"
+
+    # Check for running under screen. As you look at this you might think
+    # "what about tmux too?" -- good point; but we'll be picking up tmux as
+    # the terminal type, because of how it takes over TERM_PROGRAM.
+    if "STY" in os.environ:
+        term_program += " (inside screen)"
+
+    return term_program
 
 
 def _env(var_name: str) -> str:
