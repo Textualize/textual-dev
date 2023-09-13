@@ -45,6 +45,19 @@ class StdoutRedirector:
         assert previous_frame is not None
         caller = inspect.getframeinfo(previous_frame)
 
+        # Handle the fact that a `print` in a Textual app goes via
+        # `App._print`, which in turn goes via _PrintCapture.write. To do
+        # this we special case a call from a method called `_print` found in
+        # `app.py`, and if there's a frame before the frame before the
+        # previous frame... we go with that.
+        if (
+            caller.filename.endswith("/app.py")
+            and caller.function == "_print"
+            and previous_frame.f_back is not None
+            and previous_frame.f_back.f_back is not None
+        ):
+            caller = inspect.getframeinfo(previous_frame.f_back.f_back)
+
         self._buffer.append(DevtoolsLog(string, caller=caller))
 
         # By default, `print` adds a "\n" suffix which results in a buffer
