@@ -158,7 +158,9 @@ def _console() -> None:
 
 def diagnose() -> None:
     """Print information about Textual and its environment to help diagnose problems."""
-    print("<!-- This is valid Markdown, you can paste the following directly in to a GitHub issue -->")
+    print(
+        "<!-- This is valid Markdown, you can paste the following directly in to a GitHub issue -->"
+    )
     print("# Textual Diagnostics")
     print()
     _versions()
