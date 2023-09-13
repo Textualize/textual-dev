@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import inspect
+from types import FrameType
 from typing import TYPE_CHECKING, cast
 
 from textual._log import LogGroup, LogVerbosity
@@ -27,36 +28,24 @@ class StdoutRedirector:
         self.devtools = devtools
         self._buffer: list[DevtoolsLog] = []
 
-    def write(self, string: str) -> None:
+    def write(self, string: str, current_frame: FrameType | None = None) -> None:
         """Write the log string to the internal buffer. If the string contains
         a newline character `\n`, the whole string will be buffered and then the
         buffer will be flushed immediately after.
 
         Args:
             string: The string to write to the buffer.
+            current_frame: The optional frame of the caller, used in logging.
         """
 
         if not self.devtools.is_connected:
             return
 
-        current_frame = inspect.currentframe()
+        current_frame = current_frame or inspect.currentframe()
         assert current_frame is not None
         previous_frame = current_frame.f_back
         assert previous_frame is not None
         caller = inspect.getframeinfo(previous_frame)
-
-        # Handle the fact that a `print` in a Textual app goes via
-        # `App._print`, which in turn goes via _PrintCapture.write. To do
-        # this we special case a call from a method called `_print` found in
-        # `app.py`, and if there's a frame before the frame before the
-        # previous frame... we go with that.
-        if (
-            caller.filename.endswith("/app.py")
-            and caller.function == "_print"
-            and previous_frame.f_back is not None
-            and previous_frame.f_back.f_back is not None
-        ):
-            caller = inspect.getframeinfo(previous_frame.f_back.f_back)
 
         self._buffer.append(DevtoolsLog(string, caller=caller))
 
