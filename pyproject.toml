@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "textual-dev"
-version = "1.2.0"
+version = "1.2.1"
 homepage = "https://github.com/Textualize/textual-dev"
 description = "Development tools for working with Textual"
 authors = ["Will McGugan <will@textualize.io>", "Dave Pearson <dave@textualize.io>"]
