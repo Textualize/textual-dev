@@ -5,6 +5,7 @@ from types import FrameType
 from typing import TYPE_CHECKING, cast
 
 from textual._log import LogGroup, LogVerbosity
+
 from .client import DevtoolsLog
 
 if TYPE_CHECKING:

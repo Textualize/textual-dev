@@ -3,12 +3,13 @@ from __future__ import annotations
 from rich.console import RenderableType
 from textual._easing import EASING
 from textual.app import App, ComposeResult
-from textual_dev.previews.borders import TEXT
 from textual.containers import Horizontal, Vertical
 from textual.reactive import reactive, var
 from textual.scrollbar import ScrollBarRender
 from textual.widget import Widget
 from textual.widgets import Button, Footer, Input, Label
+
+from textual_dev.previews.borders import TEXT
 
 VIRTUAL_SIZE = 100
 WINDOW_SIZE = 10
