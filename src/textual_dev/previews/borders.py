@@ -1,4 +1,5 @@
 from typing import cast
+
 from textual.app import App, ComposeResult
 from textual.containers import Vertical
 from textual.css.constants import VALID_BORDER
