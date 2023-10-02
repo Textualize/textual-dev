@@ -17,7 +17,7 @@ from rich.segment import Segment
 from textual._log import LogGroup, LogVerbosity
 from textual.constants import DEVTOOLS_PORT
 
-READY_TIMEOUT = 2.5
+READY_TIMEOUT = 0.5
 WEBSOCKET_CONNECT_TIMEOUT = 3
 LOG_QUEUE_MAXSIZE = 512
 
