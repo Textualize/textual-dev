@@ -66,8 +66,8 @@ def _guess_term() -> str:
         The best guess at the name of the terminal.
     """
 
-    # First obvious place to look is in $TERM_PROGRAM.
-    term_program = os.environ.get("TERM_PROGRAM")
+    # Look in a couple of generic locations for the name of the terminal.
+    term_program = os.environ.get("TERM_PROGRAM") or os.environ.get("TERMINAL_NAME")
 
     if term_program is None:
         # Seems we couldn't get it that way. Let's check for some of the
@@ -87,7 +87,9 @@ def _guess_term() -> str:
 
     else:
         # See if we can pull out some sort of version information too.
-        term_version = os.environ.get("TERM_PROGRAM_VERSION")
+        term_version = os.environ.get("TERM_PROGRAM_VERSION") or os.environ.get(
+            "TERMINAL_VERSION_STRING"
+        )
         if term_version is not None:
             term_program = f"{term_program} ({term_version})"
 
