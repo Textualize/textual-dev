@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import inspect
+from types import FrameType
 from typing import TYPE_CHECKING, cast
 
 from textual._log import LogGroup, LogVerbosity
+
 from .client import DevtoolsLog
 
 if TYPE_CHECKING:
@@ -27,19 +29,20 @@ class StdoutRedirector:
         self.devtools = devtools
         self._buffer: list[DevtoolsLog] = []
 
-    def write(self, string: str) -> None:
+    def write(self, string: str, current_frame: FrameType | None = None) -> None:
         """Write the log string to the internal buffer. If the string contains
         a newline character `\n`, the whole string will be buffered and then the
         buffer will be flushed immediately after.
 
         Args:
             string: The string to write to the buffer.
+            current_frame: The optional frame of the caller, used in logging.
         """
 
         if not self.devtools.is_connected:
             return
 
-        current_frame = inspect.currentframe()
+        current_frame = current_frame or inspect.currentframe()
         assert current_frame is not None
         previous_frame = current_frame.f_back
         assert previous_frame is not None

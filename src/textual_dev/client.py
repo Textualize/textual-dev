@@ -17,6 +17,7 @@ from rich.segment import Segment
 from textual._log import LogGroup, LogVerbosity
 from textual.constants import DEVTOOLS_PORT
 
+READY_TIMEOUT = 0.5
 WEBSOCKET_CONNECT_TIMEOUT = 3
 LOG_QUEUE_MAXSIZE = 512
 
@@ -102,6 +103,7 @@ class DevtoolsClient:
         self.log_queue: Queue[str | bytes | Type[ClientShutdown]] | None = None
         self.spillover: int = 0
         self.verbose: bool = False
+        self._ready_event: asyncio.Event = asyncio.Event()
 
     async def connect(self) -> None:
         """Connect to the devtools server.
@@ -139,6 +141,7 @@ class DevtoolsClient:
                         self.console.width = payload["width"]
                         self.console.height = payload["height"]
                         self.verbose = payload.get("verbose", False)
+                        self._ready_event.set()
 
         async def send_queued_logs():
             """Coroutine function which is scheduled as a Task, which consumes
@@ -156,8 +159,17 @@ class DevtoolsClient:
                     await websocket.send_bytes(log)
                 log_queue.task_done()
 
+        async def server_info_received() -> None:
+            """Wait for the first server info message to be received and handled."""
+            try:
+                await asyncio.wait_for(self._ready_event.wait(), timeout=READY_TIMEOUT)
+            except asyncio.TimeoutError:
+                return
+
         self.log_queue_task = asyncio.create_task(send_queued_logs())
         self.update_console_task = asyncio.create_task(update_console())
+
+        await server_info_received()
 
     async def _stop_log_queue_processing(self) -> None:
         """Schedule end of processing of the log queue, meaning that any messages a
