@@ -84,6 +84,8 @@ def _guess_term() -> str:
             )
         elif "JEDITERM_SOURCE_ARGS" in os.environ:
             term_program = "PyCharm"
+        elif "GNOME_TERMINAL_SCREEN" in os.environ:
+            term_program = "GNOME Terminal"
 
     else:
         # See if we can pull out some sort of version information too.
