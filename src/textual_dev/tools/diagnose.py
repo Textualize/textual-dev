@@ -86,6 +86,8 @@ def _guess_term() -> str:
             term_program = "PyCharm"
         elif "GNOME_TERMINAL_SCREEN" in os.environ:
             term_program = "GNOME Terminal"
+        elif "XTERM_VERSION" in os.environ:
+            term_program = os.environ.get("XTERM_VERSION") or "XTerm"
 
     else:
         # See if we can pull out some sort of version information too.
