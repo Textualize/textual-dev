@@ -70,7 +70,7 @@ def _pre_run_warnings() -> None:
                 and os.environ.get("TERM_PROGRAM") == "Apple_Terminal"
             ),
             "The default terminal app on macOS is limited to 256 colors. See our FAQ for more details:\n\n"
-            "https://github.com/Textualize/textual/blob/main/docs/FAQ.md#why-doesn't-textual-look-good-on-macos",
+            "https://textual.textualize.io/FAQ/#why-doesnt-textual-look-good-on-macos",
         )
     ]
 
