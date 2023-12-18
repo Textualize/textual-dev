@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from importlib_metadata import version
+from importlib.metadata import version
 
 from textual_dev.cli import run
 

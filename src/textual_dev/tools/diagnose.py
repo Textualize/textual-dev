@@ -8,7 +8,7 @@ import sys
 from functools import singledispatch
 from typing import Any
 
-from importlib_metadata import version
+from importlib.metadata import version
 from rich.console import Console, ConsoleDimensions
 
 
