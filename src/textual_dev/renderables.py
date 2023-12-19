@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Iterable
 
-from importlib_metadata import version
+from importlib.metadata import version
 from rich.align import Align
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.markup import escape

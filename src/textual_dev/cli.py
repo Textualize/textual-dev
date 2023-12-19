@@ -4,7 +4,7 @@ import platform
 import shlex
 
 import click
-from importlib_metadata import version
+from importlib.metadata import version
 from textual.constants import DEVTOOLS_HOST, DEVTOOLS_PORT
 
 from .tools.run import exec_command, run_app
