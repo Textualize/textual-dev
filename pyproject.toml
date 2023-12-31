@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "textual-dev"
-version = "1.3.0"
+version = "1.4.0"
 homepage = "https://github.com/Textualize/textual-dev"
 description = "Development tools for working with Textual"
-authors = ["Will McGugan <will@textualize.io>", "Dave Pearson <dave@textualize.io>"]
+authors = [
+    "Will McGugan <will@textualize.io>",
+    "Dave Pearson <dave@textualize.io>",
+]
 license = "MIT"
 readme = "README.md"
 classifiers = [
@@ -21,10 +24,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Typing :: Typed",
 ]
-include = [
-    "src/textual_dev/py.typed",
-    { path = "tests", format = "sdist" },
-]
+include = ["src/textual_dev/py.typed", { path = "tests", format = "sdist" }]
 
 [tool.poetry.dependencies]
 python = "^3.8"
