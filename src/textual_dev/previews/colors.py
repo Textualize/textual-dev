@@ -3,13 +3,14 @@ from textual.app import App, ComposeResult
 from textual.color import Color
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.design import ColorSystem
+from textual.widget import Widget
 from textual.widgets import Button, Footer, Label, Static, TabbedContent
 
 try:
     from textual.lazy import Lazy
 except ImportError:
 
-    def Lazy(widget):
+    def Lazy(widget: Widget) -> Widget:
         return widget
 
 
