@@ -10,7 +10,7 @@ try:
     from textual.lazy import Lazy
 except ImportError:
 
-    def Lazy(widget: Widget) -> Widget:
+    def Lazy(widget: Widget) -> Widget:  # type: ignore
         return widget
 
 
