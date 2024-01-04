@@ -3,7 +3,15 @@ from textual.app import App, ComposeResult
 from textual.color import Color
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.design import ColorSystem
+from textual.widget import Widget
 from textual.widgets import Button, Footer, Label, Static, TabbedContent
+
+try:
+    from textual.lazy import Lazy
+except ImportError:
+
+    def Lazy(widget: Widget) -> Widget:  # type: ignore
+        return widget
 
 
 class ThemeColorButtons(VerticalScroll):
@@ -79,15 +87,8 @@ class ColorsApp(App[None]):
     def compose(self) -> ComposeResult:
         yield Footer()
         with ColorTabs("Theme Colors", "Named Colors"):
-            yield Content(ThemeColorButtons(), id="theme")
-            yield NamedColorsView()
-
-    def on_mount(self) -> None:
-        self.call_after_refresh(self.update_view)
-
-    async def update_view(self) -> None:
-        content = self.query_one("#theme", Content)
-        await content.mount(ThemeColorsView())
+            yield Content(ThemeColorButtons(), ThemeColorsView(), id="theme")
+            yield Lazy(NamedColorsView())
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.query(ColorGroup).remove_class("-active")
