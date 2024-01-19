@@ -1,0 +1,165 @@
+Screen {
+    align: center middle;
+    overflow: auto;
+}
+
+#Button Button {
+    margin: 1 2;
+}
+
+#Button VerticalScroll {
+    width: 24;
+}
+
+#Checkbox VerticalScroll {
+    width: auto;
+    height: auto;
+    background: $boost;
+    padding: 2;
+}
+
+#ListItem ListView {
+    width: 34;
+    height: auto;
+    margin: 2 2;
+}
+
+#ListItem Label {
+    padding: 1 2;
+}
+
+
+#OptionList OptionList {
+    width: 70%;
+    height: 80%;
+}
+
+
+/*Placeholder*/
+
+#top {
+    height: 50%;
+    width: 100%;
+    layout: grid;
+    grid-size: 2 2;
+}
+
+#left {
+    row-span: 2;
+}
+
+#bot {
+    height: 50%;
+    width: 100%;
+    layout: grid;
+    grid-size: 8 8;
+}
+
+#c1 {
+    row-span: 4;
+    column-span: 8;
+    height: 100%;
+}
+
+#col1, #col2, #col3 {
+    width: 1fr;
+}
+
+#p1 {
+    row-span: 4;
+    column-span: 4;
+}
+
+#p2 {
+    row-span: 2;
+    column-span: 4;
+}
+
+#p3 {
+    row-span: 2;
+    column-span: 2;
+}
+
+#p4 {
+    row-span: 1;
+    column-span: 2;
+}
+
+#RadioButton RadioSet {
+    width: 50%;
+}
+
+#RadioSet Horizontal {
+    align: center middle;
+    height: auto;
+}
+
+#RadioSet RadioSet {
+    width: 45%;
+}
+
+#Select Select {
+    width: 60;
+    margin: 2;
+}
+
+#SelectionList SelectionList {
+    padding: 1;
+    border: solid $accent;
+    width: 80%;
+    height: 80%;
+}
+
+
+
+#Switch {
+   align: center middle;
+}
+
+#Switch .container {
+    height: auto;
+    width: auto;
+}
+
+#Switch Switch {
+    height: auto;
+    width: auto;
+}
+
+#Switch .label {
+    height: 3;
+    content-align: center middle;
+    width: auto;
+}
+
+#custom-design {
+    background: darkslategrey;
+}
+
+#custom-design > .switch--slider {
+    color: dodgerblue;
+    background: darkslateblue;
+}
+
+#ContentSwitcher #buttons {
+    height: 3;
+    width: auto;
+}
+
+#ContentSwitcher ContentSwitcher {
+    background: $panel;
+    border: round $primary;
+    width: 90%;
+    height: 1fr;
+}
+
+#ContentSwitcher DataTable {
+    background: $panel;
+}
+
+#ContentSwitcher MarkdownH2 {
+    background: $primary;
+    color: yellow;
+    border: none;
+    padding: 0;
+}

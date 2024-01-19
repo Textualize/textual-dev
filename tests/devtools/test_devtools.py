@@ -7,9 +7,9 @@ from rich.align import Align
 from rich.console import Console
 from rich.segment import Segment
 
+from tests.utilities.wait_for_predicate import wait_for_predicate
 from textual_dev.renderables import DevConsoleLog, DevConsoleNotice
 
-from utilities.wait_for_predicate import wait_for_predicate
 
 TIMESTAMP = 1649166819
 WIDTH = 40

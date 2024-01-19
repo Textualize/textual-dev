@@ -9,8 +9,9 @@ from aiohttp.web_ws import WebSocketResponse
 from rich.console import ConsoleDimensions
 from rich.panel import Panel
 from textual.constants import DEVTOOLS_PORT
+
+from tests.utilities.wait_for_predicate import wait_for_predicate
 from textual_dev.client import DevtoolsClient, DevtoolsLog
-from utilities.wait_for_predicate import wait_for_predicate
 
 CALLER_LINENO = 123
 CALLER_PATH = "a/b/c.py"

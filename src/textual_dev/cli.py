@@ -230,6 +230,14 @@ def colors() -> None:
     ColorsApp().run()
 
 
+@run.command("widgets")
+def widgets() -> None:
+    """Explore possible example_widgets."""
+    from textual_dev.previews import WidgetsApp
+
+    WidgetsApp().run()
+
+
 @run.command("keys")
 def keys() -> None:
     """Show key events."""
