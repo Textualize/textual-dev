@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import pathlib
 import platform
 import shlex
 
@@ -118,6 +119,13 @@ def _pre_run_warnings() -> None:
     help="Take screenshot after DELAY seconds.",
 )
 @click.option(
+    "--screenshot-path",
+    type=click.Path(path_type=pathlib.Path),
+    default=None,
+    metavar="PATH",
+    help="The target location for the screenshot",
+)
+@click.option(
     "-c",
     "--command",
     "command",
@@ -143,6 +151,7 @@ def _run_app(
     port: int | None,
     press: str | None,
     screenshot: int | None,
+    screenshot_location: Path | None,
     extra_args: tuple[str],
     command: bool = False,
     show_return: bool = False,
@@ -193,6 +202,8 @@ def _run_app(
         environment["TEXTUAL_PRESS"] = str(press)
     if screenshot is not None:
         environment["TEXTUAL_SCREENSHOT"] = str(screenshot)
+    if screenshot_location is not None:
+        environment["TEXTUAL_SCREENSHOT_LOCATION"] = str(screenshot_location)
     if show_return:
         environment["TEXTUAL_SHOW_RETURN"] = "1"
 
