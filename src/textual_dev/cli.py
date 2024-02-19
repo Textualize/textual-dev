@@ -5,7 +5,7 @@ import platform
 import shlex
 
 import click
-from importlib_metadata import version
+from importlib.metadata import version
 from textual.constants import DEVTOOLS_HOST, DEVTOOLS_PORT
 
 from .tools.run import exec_command, run_app
@@ -71,7 +71,7 @@ def _pre_run_warnings() -> None:
                 and os.environ.get("TERM_PROGRAM") == "Apple_Terminal"
             ),
             "The default terminal app on macOS is limited to 256 colors. See our FAQ for more details:\n\n"
-            "https://github.com/Textualize/textual/blob/main/FAQ.md#why-doesn't-textual-look-good-on-macos",
+            "https://textual.textualize.io/FAQ/#why-doesnt-textual-look-good-on-macos",
         )
     ]
 

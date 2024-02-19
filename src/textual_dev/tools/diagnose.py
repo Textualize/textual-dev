@@ -8,7 +8,7 @@ import sys
 from functools import singledispatch
 from typing import Any
 
-from importlib_metadata import version
+from importlib.metadata import version
 from rich.console import Console, ConsoleDimensions
 
 
@@ -88,6 +88,8 @@ def _guess_term() -> str:
             term_program = "GNOME Terminal"
         elif "XTERM_VERSION" in os.environ:
             term_program = os.environ.get("XTERM_VERSION") or "XTerm"
+        elif "TERMINATOR_UUID" in os.environ:
+            term_program = "Terminator"
 
     else:
         # See if we can pull out some sort of version information too.
