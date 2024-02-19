@@ -151,7 +151,7 @@ def _run_app(
     port: int | None,
     press: str | None,
     screenshot: int | None,
-    screenshot_location: Path | None,
+    screenshot_location: pathlib.Path | None,
     extra_args: tuple[str],
     command: bool = False,
     show_return: bool = False,
