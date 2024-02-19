@@ -126,6 +126,13 @@ def _pre_run_warnings() -> None:
     help="The target location for the screenshot",
 )
 @click.option(
+    "--screenshot-filename",
+    type=click.Path(path_type=pathlib.Path),
+    default=None,
+    metavar="NAME",
+    help="The filename for the screenshot",
+)
+@click.option(
     "-c",
     "--command",
     "command",
@@ -152,6 +159,7 @@ def _run_app(
     press: str | None,
     screenshot: int | None,
     screenshot_location: pathlib.Path | None,
+    screenshot_filename: pathlib.Path | None,
     extra_args: tuple[str],
     command: bool = False,
     show_return: bool = False,
@@ -204,6 +212,8 @@ def _run_app(
         environment["TEXTUAL_SCREENSHOT"] = str(screenshot)
     if screenshot_location is not None:
         environment["TEXTUAL_SCREENSHOT_LOCATION"] = str(screenshot_location)
+    if screenshot_filename is not None:
+        environment["TEXTUAL_SCREENSHOT_FILENAME"] = str(screenshot_filename)
     if show_return:
         environment["TEXTUAL_SHOW_RETURN"] = "1"
 
