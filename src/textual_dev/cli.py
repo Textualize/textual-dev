@@ -158,7 +158,7 @@ def _run_app(
     port: int | None,
     press: str | None,
     screenshot: int | None,
-    screenshot_location: pathlib.Path | None,
+    screenshot_path: pathlib.Path | None,
     screenshot_filename: pathlib.Path | None,
     extra_args: tuple[str],
     command: bool = False,
@@ -210,8 +210,8 @@ def _run_app(
         environment["TEXTUAL_PRESS"] = str(press)
     if screenshot is not None:
         environment["TEXTUAL_SCREENSHOT"] = str(screenshot)
-    if screenshot_location is not None:
-        environment["TEXTUAL_SCREENSHOT_LOCATION"] = str(screenshot_location)
+    if screenshot_path is not None:
+        environment["TEXTUAL_SCREENSHOT_LOCATION"] = str(screenshot_path)
     if screenshot_filename is not None:
         environment["TEXTUAL_SCREENSHOT_FILENAME"] = str(screenshot_filename)
     if show_return:
