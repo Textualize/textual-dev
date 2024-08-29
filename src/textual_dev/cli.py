@@ -227,18 +227,29 @@ def _run_app(
         run_app(import_name, args, environment)
 
 @run.command("serve")
+@click.argument("command")
 @click.option("-h", "--host", type=str, default="localhost", help="Host to serve on")
 @click.option("-p", "--port", type=int, default=8000, help="Port of server")
 @click.option("-t", "--title", type=str, default="Textual App", help="Name of the app being served")
 @click.option("-u", "--url", type=str, default=None, help="Public URL")
 @click.option("--dev", type=bool, default=False, is_flag=True, help="Enable debug mode")
-@click.argument("command", nargs=-1, type=click.UNPROCESSED)
-def serve(host:str, port:int, title:str, url:str | None, dev:bool, command:tuple[str]) -> None:
-    """Run a local web server to serve the application. """
+
+def serve(command:str, host:str, port:int, title:str, url:str | None, dev:bool) -> None:
+    """Run a local web server to serve the application.
+    
+    The command to run should be appended to "textual serve", and should include any python invocation.
+
+        textual serve "python -m textual"
+
+    You may also want to add the `--dev` switch, which will enable textual devtools.
+
+        textual serve --dev "python -m textual"
+    
+    
+    """
     from textual_serve.server import Server
     
-    run_command = " ".join(command)
-    server = Server(run_command, host, port, title=title,  public_url=url)
+    server = Server(command, host, port, title=title,  public_url=url)
     server.serve(debug=dev)
 
 
