@@ -257,9 +257,6 @@ def serve(
     """
     from textual_serve.server import Server
 
-    if " " not in command and command.endswith(".py"):
-        command = f"python {command}"
-
     server = Server(command, host, port, title=title, public_url=url)
     server.serve(debug=dev)
 
