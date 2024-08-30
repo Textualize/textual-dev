@@ -8,7 +8,7 @@ import click
 from importlib.metadata import version
 from textual.constants import DEVTOOLS_HOST, DEVTOOLS_PORT
 
-from .tools.run import exec_command, run_app
+from .tools.run import _is_python_path, exec_command, run_app
 
 WINDOWS = platform.system() == "Windows"
 """True if we're running on Windows."""
@@ -228,7 +228,7 @@ def _run_app(
 
 
 @run.command("serve")
-@click.argument("command")
+@click.argument("import_name", metavar="FILE or FILE:APP")
 @click.option("-h", "--host", type=str, default="localhost", help="Host to serve on")
 @click.option("-p", "--port", type=int, default=8000, help="Port of server")
 @click.option(
@@ -240,8 +240,25 @@ def _run_app(
 )
 @click.option("-u", "--url", type=str, default=None, help="Public URL")
 @click.option("--dev", type=bool, default=False, is_flag=True, help="Enable debug mode")
+@click.option(
+    "-c",
+    "--command",
+    "command",
+    type=bool,
+    default=False,
+    help="Run as command rather that a file / module.",
+    is_flag=True,
+)
+@click.argument("extra_args", nargs=-1, type=click.UNPROCESSED)
 def serve(
-    command: str, host: str, port: int, title: str, url: str | None, dev: bool
+    import_name: str,
+    host: str,
+    port: int,
+    title: str,
+    url: str | None,
+    dev: bool,
+    extra_args: tuple[str],
+    command: bool = False,
 ) -> None:
     """Run a local web server to serve the application.
 
@@ -257,7 +274,20 @@ def serve(
     """
     from textual_serve.server import Server
 
-    server = Server(command, host, port, title=title, public_url=url)
+    import_name, *args = [*shlex.split(import_name, posix=not WINDOWS), *extra_args]
+
+    if command:
+        run_args = shlex.join(args)
+        run_command = f"{import_name} {run_args}"
+        server = Server(run_command, host, port, title=title, public_url=url)
+    else:
+        if _is_python_path(import_name):
+            run_command = f"python {import_name}"
+        else:
+            run_args = shlex.join(args)
+            run_command = f"{import_name} {run_args}"
+        server = Server(run_command, host, port, title=title, public_url=url)
+
     server.serve(debug=dev)
 
 
