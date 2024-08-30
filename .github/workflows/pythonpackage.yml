@@ -41,7 +41,7 @@ jobs:
           version: 1.4.2
           virtualenvs-in-project: true
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5.2.0
+        uses: actions/setup-python@v4.7.1
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
