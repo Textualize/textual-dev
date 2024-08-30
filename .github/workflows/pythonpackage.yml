@@ -41,10 +41,10 @@ jobs:
           version: 1.4.2
           virtualenvs-in-project: true
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4.7.1
+        uses: actions/setup-python@v5.2.0
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: x64
+
       - name: Load cached venv
         id: cached-poetry-dependencies
         uses: actions/cache@v3
