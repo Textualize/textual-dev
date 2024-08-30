@@ -13,7 +13,7 @@ import platform
 import subprocess
 import sys
 from string import Template
-from typing import NoReturn, Sequence
+from typing import Sequence
 
 WINDOWS = platform.system() == "Windows"
 
@@ -21,9 +21,13 @@ EXEC_SCRIPT = Template(
     """\
 from textual.app import App
 try:
-    from $MODULE import $APP as app;
+    from $MODULE import $APP as app
 except ImportError:
-    raise SystemExit("Unable to import '$APP' from module '$MODULE'") from None
+    import sys, traceback
+    traceback.print_exc()
+    print(file=sys.stderr)
+    msg = "Unable to import '$APP' from module '$MODULE' (see traceback above)"
+    raise SystemExit(msg) from None
 
 if isinstance(app, App):
     # If we imported an app, run it
@@ -34,10 +38,6 @@ else:
 """
 )
 """A template script to import and run an app."""
-
-
-class ExecImportError(Exception):
-    """Raised if a Python import is invalid."""
 
 
 def run_app(
@@ -60,13 +60,9 @@ def run_app(
     if _is_python_path(import_name):
         # If it is a Python path we can exec it now
         exec_python([import_name, *args], app_environment)
-
     else:
         # Otherwise it is assumed to be a Python import
-        try:
-            exec_import(import_name, args, app_environment)
-        except (SyntaxError, ExecImportError):
-            print(f"Unable to import Textual app from {import_name!r}")
+        exec_import(import_name, args, app_environment)
 
 
 def _is_python_path(path: str) -> bool:
