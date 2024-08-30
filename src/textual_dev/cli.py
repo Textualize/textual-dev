@@ -15,7 +15,7 @@ WINDOWS = platform.system() == "Windows"
 
 
 @click.group()
-@click.version_option(version("textual"))
+@click.version_option(f"{version('textual')} (textual-dev {version('textual-dev')})")
 def run() -> None:
     pass
 
