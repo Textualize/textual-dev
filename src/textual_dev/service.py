@@ -276,11 +276,11 @@ class ClientHandler:
 
         # Stop any writes to the websocket first
         await self.outgoing_queue.put(None)
-        await self.outgoing_messages_task
+        await asyncio.shield(self.outgoing_messages_task)
 
         # Now we can shut the socket down
         await self.websocket.close()
 
         # This task is independent of the websocket
         await self.incoming_queue.put(None)
-        await self.incoming_messages_task
+        await asyncio.shield(self.incoming_messages_task)
