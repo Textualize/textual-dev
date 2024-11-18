@@ -68,7 +68,8 @@ class BorderApp(App[None]):
     def update_border(self, _) -> None:
         self.text.styles.border = (
             cast(
-                EdgeType, self.sidebar.get_option_at_index(self.sidebar.highlighted).id
+                EdgeType,
+                self.sidebar.get_option_at_index(self.sidebar.highlighted or 0).id,
             ),
             self.theme_variables["border"],
         )
