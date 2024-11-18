@@ -62,7 +62,6 @@ class EasingApp(App[None]):
         self.bind(
             "ctrl+p", "focus('duration-input')", description="Focus: Duration Input"
         )
-        self.bind("ctrl+b", "toggle_dark", description="Toggle Dark")
 
     def compose(self) -> ComposeResult:
         self.animated_bar = Bar()
@@ -111,9 +110,6 @@ class EasingApp(App[None]):
             new_duration = _try_float(event.value)
             if new_duration is not None:
                 self.duration = new_duration
-
-    def action_toggle_dark(self) -> None:
-        self.dark = not self.dark
 
 
 def _try_float(string: str) -> float | None:
