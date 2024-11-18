@@ -4,7 +4,8 @@ from textual.color import Color
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.design import ColorSystem
 from textual.widget import Widget
-from textual.widgets import Button, Footer, Label, Static, TabbedContent
+from textual.widgets import Footer, Label, OptionList, Static, TabbedContent
+from textual.widgets.option_list import Option
 
 try:
     from textual.lazy import Lazy
@@ -12,12 +13,6 @@ except ImportError:
 
     def Lazy(widget: Widget) -> Widget:  # type: ignore
         return widget
-
-
-class ThemeColorButtons(VerticalScroll):
-    def compose(self) -> ComposeResult:
-        for color_name in ColorSystem.COLOR_NAMES:
-            yield Button(color_name, id=color_name)
 
 
 class ColorBar(Static):
@@ -56,7 +51,7 @@ class NamedColorsView(ColorsView):
                     yield ColorBar(f"{color.rgb}", classes="text text-left")
 
 
-class ThemeColorsView(ColorsView):
+class ThemeColorsView(ColorsView, can_focus=False):
     def compose(self) -> ComposeResult:
         LEVELS = [
             "darken-3",
@@ -80,21 +75,58 @@ class ThemeColorsView(ColorsView):
 
 
 class ColorsApp(App[None]):
-    CSS_PATH = "colors.css"
+    CSS_PATH = "colors.tcss"
 
-    BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
+    BINDINGS = [
+        ("[", "previous_theme", "Previous theme"),
+        ("]", "next_theme", "Next theme"),
+    ]
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.theme_names = [
+            theme for theme in self.available_themes if theme != "textual-ansi"
+        ]
 
     def compose(self) -> ComposeResult:
         yield Footer()
         with ColorTabs("Theme Colors", "Named Colors"):
-            yield Content(ThemeColorButtons(), ThemeColorsView(), id="theme")
+            with Content(id="theme"):
+                sidebar = OptionList(
+                    *[
+                        Option(color_name, id=color_name)
+                        for color_name in ColorSystem.COLOR_NAMES
+                    ],
+                    id="sidebar",
+                )
+                sidebar.border_title = "Theme Colors"
+                yield sidebar
+                yield ThemeColorsView()
             yield Lazy(NamedColorsView())
 
-    def on_button_pressed(self, event: Button.Pressed) -> None:
+    def on_option_list_option_highlighted(
+        self, event: OptionList.OptionHighlighted
+    ) -> None:
         self.query(ColorGroup).remove_class("-active")
-        group = self.query_one(f"#group-{event.button.id}", ColorGroup)
+        group = self.query_one(f"#group-{event.option.id}", ColorGroup)
         group.add_class("-active")
         group.scroll_visible(top=True, speed=150)
+
+    def action_next_theme(self) -> None:
+        themes = self.theme_names
+        index = themes.index(self.current_theme.name)
+        self.theme = themes[(index + 1) % len(themes)]
+        self.notify_new_theme(self.current_theme.name)
+
+    def action_previous_theme(self) -> None:
+        themes = self.theme_names
+        index = themes.index(self.current_theme.name)
+        self.theme = themes[(index - 1) % len(themes)]
+        self.notify_new_theme(self.current_theme.name)
+
+    def notify_new_theme(self, theme_name: str) -> None:
+        self.clear_notifications()
+        self.notify(f"Theme is {theme_name}")
 
 
 if __name__ == "__main__":

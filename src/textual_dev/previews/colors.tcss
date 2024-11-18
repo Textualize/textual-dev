@@ -2,14 +2,16 @@ Label {
     width: 100%;
 }
 
-ThemeColorButtons {
-    dock: left;
-    overflow-y: auto;
-    width: 30;
+
+Tabs {
+    margin: 1 2;
 }
 
-ThemeColorButtons > Button {
-    width: 100%;
+#sidebar {
+    dock: left;
+    width: auto;
+    padding: 1 2;
+    border: panel $border;
 }
 
 ColorsView {
@@ -49,12 +51,12 @@ ColorGroup {
     height: auto;
     padding: 1 4 2 4;
     background: $surface;
-    border: wide $surface;
+    border: wide $border-blurred;
 }
 
 
 ColorGroup.-active {
-    border: wide $secondary;
+    border: wide $border;
 }
 
 NamedColorsView {

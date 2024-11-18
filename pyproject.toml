@@ -26,8 +26,8 @@ classifiers = [
 include = ["src/textual_dev/py.typed", { path = "tests", format = "sdist" }]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-textual = ">=0.36.0"
+python = "^3.8.1"
+textual = ">=0.86.0"
 textual_serve = ">=1.0.3"
 aiohttp = ">=3.8.1"
 click = ">=8.1.2"
