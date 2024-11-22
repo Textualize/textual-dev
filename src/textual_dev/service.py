@@ -30,6 +30,7 @@ class DevtoolsService:
     def __init__(
         self,
         update_frequency: float,
+        port: int | None = None,
         verbose: bool = False,
         exclude: list[str] | None = None,
     ) -> None:
@@ -37,10 +38,12 @@ class DevtoolsService:
         Args:
             update_frequency: The number of seconds to wait between
                 sending updates of the console size to connected clients.
+            port: The port the devtools server is running on.
             verbose: Enable verbose logging on client.
             exclude: List of log groups to exclude from output.
         """
         self.update_frequency = update_frequency
+        self.port = port
         self.verbose = verbose
         self.exclude = {name.upper() for name in exclude} if exclude else set()
         self.console = Console()
@@ -50,7 +53,7 @@ class DevtoolsService:
     async def start(self) -> None:
         """Starts devtools tasks"""
         self.size_poll_task = asyncio.create_task(self._console_size_poller())
-        self.console.print(DevConsoleHeader(verbose=self.verbose))
+        self.console.print(DevConsoleHeader(port=self.port, verbose=self.verbose))
 
     @property
     def clients_connected(self) -> bool:
