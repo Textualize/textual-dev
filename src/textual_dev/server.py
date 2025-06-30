@@ -46,12 +46,19 @@ def _run_devtools(
     def noop_print(_: str) -> None:
         pass
 
+    # As of Python 3.14, get_event_loop() no longer implicitly starts
+    # an new event loop if none is running. (cpython gh-126353)
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+
     try:
         run_app(
             app,
             port=DEVTOOLS_PORT if port is None else port,
             print=noop_print,
-            loop=asyncio.get_event_loop(),
+            loop=loop,
         )
     except OSError:
         from rich import print
