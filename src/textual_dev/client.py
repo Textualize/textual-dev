@@ -118,6 +118,8 @@ class DevtoolsClient:
                 f"{self.url}/textual-devtools-websocket"
             )
         except (ClientConnectorError, ClientResponseError):
+            await self.session.close()
+            self.session = None
             raise DevtoolsConnectionError()
 
         log_queue = self.log_queue
